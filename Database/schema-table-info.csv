@@ -1,0 +1,64 @@
+TABLE_NAME,COLUMN_NAME,DATA_TYPE,CONSTRAINT_TYPE,CONSTRAINT_NAME,REFERENCED_TABLE_NAME,REFERENCED_COLUMN_NAME
+admin_user,id,bigint,"PRIMARY KEY",PRIMARY,NULL,NULL
+admin_user,password,varchar,NULL,NULL,NULL,NULL
+admin_user,username,varchar,NULL,NULL,NULL,NULL
+admin_user,full_name,varchar,NULL,NULL,NULL,NULL
+appointment,id,bigint,"PRIMARY KEY",PRIMARY,NULL,NULL
+appointment,appointment_date_time,datetime,NULL,NULL,NULL,NULL
+appointment,reason,varchar,NULL,NULL,NULL,NULL
+appointment,status,varchar,NULL,NULL,NULL,NULL
+appointment,doctor_id,bigint,"FOREIGN KEY",FKoeb98n82eph1dx43v3y2bcmsl,doctor,id
+appointment,patient_id,bigint,"FOREIGN KEY",FK4apif2ewfyf14077ichee8g06,patient,id
+claim,id,bigint,"PRIMARY KEY",PRIMARY,NULL,NULL
+claim,claim_amount,decimal,NULL,NULL,NULL,NULL
+claim,processed_at,datetime,NULL,NULL,NULL,NULL
+claim,status,varchar,NULL,NULL,NULL,NULL
+claim,submitted_at,datetime,NULL,NULL,NULL,NULL
+claim,appointment_id,bigint,"FOREIGN KEY",FKs36kdj0hc0x6v1uqvsyongmbf,appointment,id
+claim,fee_id,bigint,"FOREIGN KEY",FKm4ec3la1tqgswdu3qdip6j10c,fee,id
+claim,patient_id,bigint,"FOREIGN KEY",FKgj89dyx4wf51seua8u63nfh92,patient,id
+doctor,id,bigint,"PRIMARY KEY",PRIMARY,NULL,NULL
+doctor,name,varchar,NULL,NULL,NULL,NULL
+doctor,specialization,varchar,NULL,NULL,NULL,NULL
+doctor,photo_path,varchar,NULL,NULL,NULL,NULL
+doctor,username,varchar,UNIQUE,username,NULL,NULL
+doctor,password,varchar,NULL,NULL,NULL,NULL
+fee,id,bigint,"PRIMARY KEY",PRIMARY,NULL,NULL
+fee,amount,decimal,NULL,NULL,NULL,NULL
+fee,created_at,datetime,NULL,NULL,NULL,NULL
+fee,paid,bit,NULL,NULL,NULL,NULL
+fee,appointment_id,bigint,UNIQUE,UKssrwbw7ll1iqdjv2r6tp003wb,NULL,NULL
+fee,appointment_id,bigint,"FOREIGN KEY",FKhuca7uy2dsfprd2d9cvj38kna,appointment,id
+fee,description,varchar,NULL,NULL,NULL,NULL
+fee,paid_at,timestamp,NULL,NULL,NULL,NULL
+message,id,bigint,"PRIMARY KEY",PRIMARY,NULL,NULL
+message,created_at,datetime,NULL,NULL,NULL,NULL
+message,sender_role,varchar,NULL,NULL,NULL,NULL
+message,status,varchar,NULL,NULL,NULL,NULL
+message,text,varchar,NULL,NULL,NULL,NULL
+message,patient_id,bigint,"FOREIGN KEY",FKsmibfq4v794n42pcma2qk554o,patient,id
+patient,id,bigint,"PRIMARY KEY",PRIMARY,NULL,NULL
+patient,approved,tinyint,NULL,NULL,NULL,NULL
+patient,email,varchar,NULL,NULL,NULL,NULL
+patient,first_name,varchar,NULL,NULL,NULL,NULL
+patient,last_name,varchar,NULL,NULL,NULL,NULL
+patient,password,varchar,NULL,NULL,NULL,NULL
+patient,username,varchar,NULL,NULL,NULL,NULL
+patient,rejected,tinyint,NULL,NULL,NULL,NULL
+patient,address,varchar,NULL,NULL,NULL,NULL
+patient,dob,varchar,NULL,NULL,NULL,NULL
+patient,gender,varchar,NULL,NULL,NULL,NULL
+patient,phone,varchar,NULL,NULL,NULL,NULL
+patient,photo_path,varchar,NULL,NULL,NULL,NULL
+report,id,bigint,"PRIMARY KEY",PRIMARY,NULL,NULL
+report,content_type,varchar,NULL,NULL,NULL,NULL
+report,file_name,varchar,NULL,NULL,NULL,NULL
+report,storage_path,varchar,NULL,NULL,NULL,NULL
+report,uploaded_at,datetime,NULL,NULL,NULL,NULL
+report,appointment_id,bigint,"FOREIGN KEY",FKorag1ww0f2a059d8w1rkwb8j2,appointment,id
+reports,id,bigint,"PRIMARY KEY",PRIMARY,NULL,NULL
+reports,content_type,varchar,NULL,NULL,NULL,NULL
+reports,file_name,varchar,NULL,NULL,NULL,NULL
+reports,storage_path,varchar,NULL,NULL,NULL,NULL
+reports,uploaded_at,datetime,NULL,NULL,NULL,NULL
+reports,appointment_id,bigint,"FOREIGN KEY",FKmdo2ey64lleejehy0xtule6ra,appointment,id
