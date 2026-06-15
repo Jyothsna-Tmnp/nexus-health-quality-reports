@@ -1,0 +1,21 @@
+S.No,Tester Name,List of Errors and Suggestions,Severity,Test Case ID,Status
+1,Lakshmi,Priority values are missing or placed inconsistently across sheets. Ensure correct column alignment and consistent priority usage.,High,All Test Cases,Open
+2,Lakshmi,Actual Result and Execution Result columns are empty. Execution evidence must be captured.,High,All Test Cases,Open
+3,Lakshmi,Preconditions are missing or marked as 'None'. Preconditions are not have test case IDs,Medium,All Modules,Open
+4,Lakshmi,"Expected Results are too generic. Add UI validations, field labels, alignment, responsiveness, and exact error message text.",Medium,Multiple Test Cases,Open
+5,Lakshmi,"Negative scenarios for invalid inputs (email, phone, special characters) are missing.",High,Registration/Edit Profile/Appointment,Open
+6,Lakshmi,Security test cases missing for SQL Injection.,High,Login/Registration/Profile/Appointment,Open
+7,Lakshmi,"Session timeout, auto logout, and unauthorized access scenarios are insufficiently covered.",High,Login/Home/Profile/Appointment,Open
+8,Lakshmi,Test case naming convention inconsistent across modules. Standardize naming.,Low,All Test Cases,Suggestion
+9,Lakshmi,RTM does not include backward mapping (Test Case to Requirement). Add reverse traceability.,Medium,RTM Sheet,Open
+10,Lakshmi,"Several requirements lack negative test cases (invalid DOB, invalid phone, duplicate username).",Medium,Registration Module,Open
+11,Lakshmi,Browser compatibility and responsive UI test cases missing across modules.,Medium,All UI Modules,Open
+12,Lakshmi,Test Data sheet missing reusable positive/negative datasets. Add structured test data.,Medium,All Test Cases,Suggestion
+13,Lakshmi,"Error message validation incomplete. Expected results should include exact message text, color, and placement.",Medium,Login/Registration/Profile,Open
+14,Lakshmi,"Appointment module missing concurrency, duplicate booking, unavailable slot, and backend failure scenarios.",High,Schedule Appointment,Open
+15,Lakshmi,"Fees module missing validations for sorting, pagination, empty state, and backend mismatch.",Medium,Fees Module,Open
+16,Lakshmi,"Pay Fees module test cases incomplete. Need full coverage for card validation, payment gateway, and error handling.",High,Pay Fees,Open
+17,Lakshmi,"Performance validations (page load time, response time) missing across modules.",Medium,All Modules,Suggestion
+18,Lakshmi,"Accessibility test cases missing (keyboard navigation, screen reader labels, ARIA roles).",Low,All Modules,Suggestion
+19,Lakshmi,"Data persistence scenarios missing after refresh, logout/login, or browser reopen.",Medium,Profile/Appointment/Fees,Open
+20,Lakshmi,"Audit log validation missing for login, profile update, appointment creation, and payment.",Medium,Login/Profile/Appointment/Fees,Open

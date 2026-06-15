@@ -1,0 +1,32 @@
+SCENARIO,TEST CASE ID,PRECONDITION,TEST CASE NAME,DESCRIPTION,TEST STEPS,TEST DATA,EXPECTED,ACTUAL,RESULTS,COMMENTS,PRIORITY
+Login Security,TC-ADM-SEC-01,None,SQL Injection in Username Field,Verify system prevents SQL injection in username,1. Open admin login page 2. Enter SQL payload in username 3. Enter any password 4. Click Login,' OR '1'='1,Validation error; No login allowed,Pending,Pending,,High
+Login Security,TC-ADM-SEC-02,None,SQL Injection in Password Field,Verify system prevents SQL injection in password,1. Open admin login page 2. Enter valid username 3. Enter SQL payload in password 4. Click Login,admin1 / ' OR '1'='1,Invalid credentials; No login,Pending,Pending,,High
+Login Security,TC-ADM-SEC-03,TC-ADM-LOGIN-01,Brute Force Login Attempt,Verify system blocks repeated failed login attempts,1. Enter wrong password repeatedly 2. Observe system behavior,5+ invalid attempts,Account lockout or captcha triggered,Pending,Pending,,High
+Login Security,TC-ADM-SEC-04,None,Weak Password Validation,Verify system rejects weak passwords,1. Enter valid username 2. Enter weak password 3. Click Login,12345,Validation error,Pending,Pending,,Medium
+Login Security,TC-ADM-SEC-05,TC-ADM-LOGIN-01,Password Masking,Verify password characters are masked,1. Open login page 2. Type password 3. Observe masking,admin123,Password masked with dots,Pending,Pending,,Medium
+,,,,,,,,,,,
+Session Security,TC-ADM-SEC-06,TC-ADM-LOGIN-02,Session Timeout,Verify session expires after inactivity,1. Login 2. Stay idle for timeout duration 3. Attempt navigation,Idle > timeout,Redirect to login; Session expired,Pending,Pending,,High
+Session Security,TC-ADM-SEC-07,TC-ADM-LOGOUT-01,Back Button After Logout,Verify secure pages cannot be accessed after logout,1. Logout 2. Press browser back arrow,N/A,Dashboard should NOT load; Redirect to login,Pending,Pending,User-reported defect: back button loads previous page,High
+Session Security,TC-ADM-SEC-08,TC-ADM-LOGIN-02,Cache Control,Verify sensitive pages are not cached,1. Login 2. Navigate to Dashboard/Patients/Claims 3. Logout 4. Press back button,N/A,No cached data; Redirect to login,Pending,Pending,,High
+Session Security,TC-ADM-SEC-09,TC-ADM-LOGIN-02,Session Hijacking Attempt,Verify session cookies cannot be reused,1. Login 2. Copy session cookie 3. Logout 4. Paste cookie in new tab,Session cookie,Session invalid; Redirect to login,Pending,Pending,,High
+,,,,,,,,,,,
+Access Control,TC-ADM-SEC-10,None,URL Manipulation - Dashboard,Verify dashboard cannot be accessed without login,1. Logout 2. Enter /admin/home URL manually,N/A,Redirect to login; No unauthorized access,Pending,Pending,,High
+Access Control,TC-ADM-SEC-11,None,URL Manipulation - Patients Page,Verify patients page cannot be accessed without login,1. Logout 2. Enter /admin/patients URL manually,N/A,Redirect to login,Pending,Pending,,High
+Access Control,TC-ADM-SEC-12,None,URL Manipulation - Claims Page,Verify claims page cannot be accessed without login,1. Logout 2. Enter /admin/claims URL manually,N/A,Redirect to login,Pending,Pending,,High
+Access Control,TC-ADM-SEC-13,None,URL Manipulation - Reports Page,Verify reports page cannot be accessed without login,1. Logout 2. Enter /admin/reports URL manually,N/A,Redirect to login,Pending,Pending,,High
+Access Control,TC-ADM-SEC-14,None,URL Manipulation - Messages Page,Verify messages page cannot be accessed without login,1. Logout 2. Enter /admin/messages URL manually,N/A,Redirect to login,Pending,Pending,,High
+,,,,,,,,,,,
+Input Validation,TC-ADM-SEC-15,TC-ADM-PAT-01,HTML Injection in Patient Names,Verify system sanitizes HTML tags,1. Navigate to Patients 2. Enter <script>alert(1)</script> in name fields 3. Save,<script>alert(1)</script>,HTML sanitized; No script execution,Pending,Pending,,High
+Input Validation,TC-ADM-SEC-16,TC-ADM-MSG-01,HTML Injection in Messages,Verify system sanitizes HTML tags in messages,1. Open Messages 2. Enter <script>alert(1)</script> 3. Click Send,<script>alert(1)</script>,Script should not execute,Pending,Pending,,High
+Input Validation,TC-ADM-SEC-17,TC-ADM-RPT-01,XSS in Report File Name,Verify uploaded report names do not execute scripts,1. Upload file with script in name 2. View in Reports table,report<script>.jpg,Displayed as text; No script execution,Pending,Pending,,High
+,,,,,,,,,,,
+Data Security,TC-ADM-SEC-18,TC-ADM-RPT-01,Unauthorized Report Access,Verify admin cannot access reports of unassigned patients,1. Modify report?id=XYZ in URL,Different report ID,Access denied or error message,Pending,Pending,,High
+Data Security,TC-ADM-SEC-19,TC-ADM-CLM-01,Claim Data Exposure,Verify claim details cannot be accessed via URL manipulation,1. Modify claim?id=XYZ in URL,Different claim ID,Access denied,Pending,Pending,,High
+Data Security,TC-ADM-SEC-20,TC-ADM-PAT-01,Invalid Data Exposure in URL,Verify no sensitive data appears in URL,1. Navigate through portal 2. Observe URL parameters,N/A,No passwords/tokens in URL,Pending,Pending,,High
+,,,,,,,,,,,
+File Security,TC-ADM-SEC-21,TC-ADM-RPT-01,Malicious File Upload Attempt,Verify system rejects harmful file uploads,1. Navigate to Reports 2. Upload .exe file,malware.exe,Upload rejected; Error message,Pending,Pending,,High
+File Security,TC-ADM-SEC-22,TC-ADM-RPT-01,File Size Validation,Verify system rejects oversized files,1. Upload file > allowed size,Large file,Error message,Pending,Pending,,Medium
+,,,,,,,,,,,
+Network Security,TC-ADM-SEC-23,None,HTTPS Enforcement,Verify admin login page loads only over HTTPS,1. Enter HTTP URL 2. Observe redirection,http://82.197.92.72:8080/admin/login,Redirect to HTTPS or secure warning,Pending,Pending,,High
+,,,,,,,,,,,
+Performance Security,TC-ADM-SEC-24,TC-ADM-LOGIN-02,Rate Limiting,Verify system rate-limits rapid requests,1. Send rapid login attempts 2. Observe response,Multiple rapid requests,429 Too Many Requests or temporary block,Pending,Pending,,Medium
